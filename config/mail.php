@@ -1,5 +1,8 @@
 <?php
 
+$username = isset(getenv('SENDGRID_USERNAME')) ? getenv('SENDGRID_USERNAME') : env('MAIL_USERNAME');
+$password = isset(getenv('SENDGRID_PASSWORD')) ? getenv('SENDGRID_PASSWORD') : env('MAIL_PASSWORD');
+
 return [
 
     /*
@@ -28,7 +31,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.sendgrid.net'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +57,7 @@ return [
     |
     */
 
-    'from' => ['address' => env('MAIL_FROM', 'mail@bookstackapp.com'), 'name' => 'BookStack'],
+    'from' => ['address' => env('MAIL_FROM', 'wiki@oomba.com'), 'name' => 'Oomba Wiki'],
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +83,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => $username,
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +96,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => $password,
 
     /*
     |--------------------------------------------------------------------------
