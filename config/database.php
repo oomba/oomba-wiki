@@ -1,11 +1,11 @@
 <?php
 
-$url = parse_url(getenv("JAWSDB_URL"));
+$url = parse_url(getenv('JAWSDB_URL'));
 
-$host = isset($url["host"]) ? $url["host"] : env('DB_HOST', 'localhost');
-$username = isset($url["user"]) ? $url["user"] : env('DB_USERNAME', 'forge');
-$password = isset($url["pass"]) ? $url["pass"] : env('DB_PASSWORD', '');
-$database = isset($url["host"]) ? ltrim($dbparts['path'],'/') : env('DB_DATABASE', 'forge');
+$host = isset($url['host']) ? $url['host'] : env('DB_HOST', 'localhost');
+$username = isset($url['user']) ? $url['user'] : env('DB_USERNAME', 'forge');
+$password = isset($url['pass']) ? $url['pass'] : env('DB_PASSWORD', '');
+$database = isset($url['host']) ? ltrim($url['path'], '/') : env('DB_DATABASE', 'forge');
 
 return [
 
