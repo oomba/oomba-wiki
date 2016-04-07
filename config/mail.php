@@ -1,7 +1,7 @@
 <?php
 
-$username = isset(getenv('SENDGRID_USERNAME')) ? getenv('SENDGRID_USERNAME') : env('MAIL_USERNAME');
-$password = isset(getenv('SENDGRID_PASSWORD')) ? getenv('SENDGRID_PASSWORD') : env('MAIL_PASSWORD');
+$username = is_null(getenv('SENDGRID_USERNAME')) ? getenv('SENDGRID_USERNAME') : env('MAIL_USERNAME');
+$password = is_null(getenv('SENDGRID_PASSWORD')) ? getenv('SENDGRID_PASSWORD') : env('MAIL_PASSWORD');
 
 return [
 
