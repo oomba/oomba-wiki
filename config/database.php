@@ -146,6 +146,6 @@ return [
     |
     */
 
-    'redis' => $redisConfig,
+    'redis' => env('REDIS_SERVERS', false) ? $redisConfig : [],
 
 ];
