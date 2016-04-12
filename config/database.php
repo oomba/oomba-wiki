@@ -7,6 +7,22 @@ $username = isset($url['user']) ? $url['user'] : env('DB_USERNAME', 'forge');
 $password = isset($url['pass']) ? $url['pass'] : env('DB_PASSWORD', '');
 $database = isset($url['host']) ? ltrim($url['path'], '/') : env('DB_DATABASE', 'forge');
 
+// REDIS - Split out configuration into an array
+if (env('REDIS_SERVERS', false)) {
+    $redisServerKeys = ['host', 'port', 'database'];
+    $redisServers = explode(',', trim(env('REDIS_SERVERS', '127.0.0.1:6379:0'), ','));
+    $redisConfig = [
+        'cluster' => env('REDIS_CLUSTER', false)
+    ];
+    foreach ($redisServers as $index => $redisServer) {
+        $redisServerName = ($index === 0) ? 'default' : 'redis-server-' . $index;
+        $redisServerDetails = explode(':', $redisServer);
+        if (count($redisServerDetails) < 2) $redisServerDetails[] = '6379';
+        if (count($redisServerDetails) < 3) $redisServerDetails[] = '0';
+        $redisConfig[$redisServerName] = array_combine($redisServerKeys, $redisServerDetails);
+    }
+}
+
 return [
 
     /*
@@ -130,16 +146,6 @@ return [
     |
     */
 
-    'redis' => [
-
-        'cluster' => false,
-
-        'default' => [
-            'host'     => '127.0.0.1',
-            'port'     => 6379,
-            'database' => 0,
-        ],
-
-    ],
+    'redis' => $redisConfig,
 
 ];
