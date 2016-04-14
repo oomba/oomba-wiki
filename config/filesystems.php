@@ -1,5 +1,13 @@
 <?php
 
+
+$storage_type = !is_null(getenv('STORAGE_TYPE')) ? getenv('STORAGE_TYPE') : env('STORAGE_TYPE', 'local');
+$storage_url = !is_null(getenv('STORAGE_URL')) ? getenv('STORAGE_URL') : env('STORAGE_URL', false);
+$storage_s3_key = !is_null(getenv('STORAGE_S3_KEY')) ? getenv('STORAGE_S3_KEY') : env('STORAGE_S3_KEY', 'your-key');
+$storage_s3_secret = !is_null(getenv('STORAGE_S3_SECRET')) ? getenv('STORAGE_S3_SECRET') : env('STORAGE_S3_SECRET', 'your-secret');
+$storage_s3_region = !is_null(getenv('STORAGE_S3_REGION')) ? getenv('STORAGE_S3_REGION') : env('STORAGE_S3_REGION', 'your-region');
+$storage_s3_bucket = !is_null(getenv('STORAGE_S3_BUCKET')) ? getenv('STORAGE_S3_BUCKET') : env('STORAGE_S3_BUCKET', 'your-bucket');
+
 return [
 
     /*
@@ -15,7 +23,7 @@ return [
     |
     */
 
-    'default' => env('STORAGE_TYPE', 'local'),
+    'default' => $storage_type,
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +34,7 @@ return [
     | file storage service, such as s3, to store publicly accessible assets.
     |
     */
-    'url' => env('STORAGE_URL', false),
+    'url' => $storage_url,
 
     /*
     |--------------------------------------------------------------------------
@@ -75,10 +83,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key'    => env('STORAGE_S3_KEY', 'your-key'),
-            'secret' => env('STORAGE_S3_SECRET', 'your-secret'),
-            'region' => env('STORAGE_S3_REGION', 'your-region'),
-            'bucket' => env('STORAGE_S3_BUCKET', 'your-bucket'),
+            'key'    => $storage_s3_key,
+            'secret' => $storage_s3_secret,
+            'region' => $storage_s3_region,
+            'bucket' => $storage_s3_bucket,
         ],
 
         'rackspace' => [
