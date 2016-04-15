@@ -166,7 +166,7 @@ class ImageService
         }
 
         $thumbData = (string)$thumb->encode();
-        $storage->put($thumbFilePath, $thumbData);
+        $storage->put($thumbFilePath, $thumbData, 'public');
         $this->cache->put('images-' . $image->id . '-' . $thumbFilePath, $thumbFilePath, 60 * 72);
 
         return $this->getPublicUrl($thumbFilePath);
