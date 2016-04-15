@@ -94,7 +94,7 @@ class ImageService
         $fullPath = $imagePath . $imageName;
 
         try {
-            $storage->put($fullPath, $imageData);
+            $storage->put($fullPath, $imageData, 'public');
         } catch (Exception $e) {
             throw new ImageUploadException('Image Path ' . $fullPath . ' is not writable by the server.');
         }
