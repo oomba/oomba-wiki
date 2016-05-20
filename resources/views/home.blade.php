@@ -38,10 +38,19 @@
             </div>
 
             <div class="col-sm-4">
-                <h3><a class="no-color" href="/pages/recently-created">Recently Created Pages</a></h3>
-                <div id="recently-created-pages">
-                    @include('partials/entity-list', ['entities' => $recentlyCreatedPages, 'style' => 'compact'])
-                </div>
+                <h3><a class="no-color" href="/books">Books</a></h3>
+                @if(count($books) > 0)
+                    @foreach($books as $book)
+                        @include('books/list-item', ['book' => $book])
+                        <hr>
+                    @endforeach
+                    {!! $books->render() !!}
+                @else
+                    <p class="text-muted">No books have been created.</p>
+                    @if(userCan('books-create-all'))
+                        <a href="/books/create" class="text-pos"><i class="zmdi zmdi-edit"></i>Create one now</a>
+                    @endif
+                @endif
 
                 <h3><a class="no-color" href="/pages/recently-updated">Recently Updated Pages</a></h3>
                 <div id="recently-updated-pages">

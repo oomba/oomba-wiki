@@ -28,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $books = $this->bookRepo->getAllPaginated(10);
         $activity = Activity::latest(10);
         $draftPages = $this->signedIn ? $this->entityRepo->getUserDraftPages(6) : [];
         $recentFactor = count($draftPages) > 0 ? 0.5 : 1;
