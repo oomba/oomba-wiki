@@ -158,7 +158,7 @@ class SocialAuthService
         $driver = trim(strtolower($socialDriver));
 
         if (!in_array($driver, $this->validSocialDrivers)) abort(404, 'Social Driver Not Found');
-        if (!$this->checkDriverConfigured($driver)) throw new SocialDriverNotConfigured;
+        if (!$this->checkDriverConfigured($driver)) throw new SocialDriverNotConfigured("Your {$driver} social settings are not configured correctly.");
 
         return $driver;
     }
@@ -215,7 +215,7 @@ class SocialAuthService
     {
         session();
         auth()->user()->socialAccounts()->where('driver', '=', $socialDriver)->delete();
-        \Session::flash('success', $socialDriver . ' account successfully detached');
+        session()->flash('success', title_case($socialDriver) . ' account successfully detached');
         return redirect(auth()->user()->getEditUrl());
     }
 

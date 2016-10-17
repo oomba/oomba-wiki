@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('head')
-    <script src="{{ baseUrl('/libs/tinymce/tinymce.min.js?ver=4.3.7') }}"></script>
+    <script src="{{ baseUrl('/libs/tinymce/tinymce.min.js?ver=4.4.3') }}"></script>
 @stop
 
 @section('body-class', 'flexbox')
@@ -19,6 +19,14 @@
 
 
     </div>
+    
     @include('partials/image-manager', ['imageType' => 'gallery', 'uploaded_to' => $page->id])
+    @include('partials/entity-selector-popup')
+
+    <script>
+        (function() {
+
+        })();
+    </script>
 
 @stop

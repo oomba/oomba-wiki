@@ -20,6 +20,16 @@
   }
 }
 
+.draft-notification {
+  pointer-events: none;
+  transform: scale(0);
+  transition: transform ease-in-out 120ms;
+  transform-origin: 50% 50%;
+  &.visible {
+    transform: scale(1);
+  }
+}
+
 .page-style.editor {
   padding: 0 !important;
 }
@@ -56,9 +66,10 @@
     margin: $-m 0;
   }
   table {
-    word-break: break-all;
-    word-break: break-word;
     hyphens: auto;
+    table-layout: fixed;
+    max-width: 100%;
+    height: auto !important;
   }
 }
 
@@ -238,7 +249,7 @@
 }
 
 .tag-display {
-  margin: $-xl $-xs;
+  margin: $-xl $-m;
   border: 1px solid #DDD;
   min-width: 180px;
   max-width: 320px;
@@ -250,13 +261,10 @@
     margin: 0;
     padding: 0;
   }
-  span {
-    color: #666;
-    margin-left: $-s;
-  }
-  .heading {
+  .heading th {
     padding: $-xs $-s;
-    color: #444;
+    color: #333;
+    font-weight: 400;
   }
   td {
     border: 0;
@@ -265,9 +273,6 @@
     color: #444;
   }
   .tag-value {
-    color: #888;
-  }
-  td i {
     color: #888;
   }
   tr:last-child td {
