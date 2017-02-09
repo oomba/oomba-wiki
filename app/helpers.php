@@ -38,6 +38,15 @@ function user()
 }
 
 /**
+ * Check if current user is a signed in user.
+ * @return bool
+ */
+function signedInUser()
+{
+    return auth()->user() && !auth()->user()->isDefault();
+}
+
+/**
  * Check if the current user has a permission.
  * If an ownable element is passed in the jointPermissions are checked against
  * that particular item.
@@ -60,11 +69,12 @@ function userCan($permission, Ownable $ownable = null)
  * Helper to access system settings.
  * @param $key
  * @param bool $default
- * @return mixed
+ * @return bool|string|\BookStack\Services\SettingService
  */
-function setting($key, $default = false)
+function setting($key = null, $default = false)
 {
     $settingService = app(\BookStack\Services\SettingService::class);
+    if (is_null($key)) return $settingService;
     return $settingService->get($key, $default);
 }
 

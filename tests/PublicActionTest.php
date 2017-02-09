@@ -64,7 +64,7 @@ class PublicActionTest extends TestCase
         $this->visit($chapter->book->getUrl());
         $this->visit($chapter->getUrl())
             ->click('New Page')
-            ->see('Create Page')
+            ->see('New Page')
             ->seePageIs($chapter->getUrl('/create-page'));
 
         $this->submitForm('Continue', [
@@ -78,6 +78,16 @@ class PublicActionTest extends TestCase
             'created_by' => $user->id,
             'updated_by' => $user->id
         ]);
+    }
+
+    public function test_content_not_listed_on_404_for_public_users()
+    {
+        $page = \BookStack\Page::first();
+        $this->asAdmin()->visit($page->getUrl());
+        Auth::logout();
+        view()->share('pageTitle', '');
+        $this->forceVisit('/cats/dogs/hippos');
+        $this->dontSee($page->name);
     }
 
 }

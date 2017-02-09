@@ -15,6 +15,8 @@
         "league/flysystem-aws-s3-v3": "^1.0",
         "barryvdh/laravel-dompdf": "^0.7",
         "predis/predis": "^1.1",
+        "gathercontent/htmldiff": "^0.2.1",
+        "barryvdh/laravel-snappy": "^0.3.1",
         "ext-gd": "*"
     },
     "require-dev": {
@@ -46,7 +48,9 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan cache:clear",
+            "php artisan view:clear"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
