@@ -17,15 +17,16 @@
     <!-- Scripts -->
     <script src="{{ baseUrl('/libs/jquery/jquery.min.js?version=2.1.4') }}"></script>
     <script src="{{ baseUrl('/libs/jquery/jquery-ui.min.js?version=1.11.4') }}"></script>
-    <script src="{{ baseUrl('/translations.js') }}"></script>
+    <script src="{{ baseUrl('/translations') }}"></script>
 
     @yield('head')
 
     @include('partials/custom-styles')
 
-    <!-- Custom user content -->
-    @if(setting('app-custom-head'))
+    @if(setting('app-custom-head') && \Route::currentRouteName() !== 'settings')
+        <!-- Custom user content -->
         {!! setting('app-custom-head') !!}
+        <!-- End custom user content -->
     @endif
 </head>
 <body class="@yield('body-class')" ng-app="bookStack">
