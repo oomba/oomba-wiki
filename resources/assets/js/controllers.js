@@ -370,14 +370,8 @@ module.exports = function (ngApp, events) {
             saveDraft();
         };
 
-        // Listen to shortcuts coming via events
-        $scope.$on('editor-keydown', (event, data) => {
-            // Save shortcut (ctrl+s)
-            if (data.keyCode == 83 && (navigator.platform.match("Mac") ? data.metaKey : data.ctrlKey)) {
-                data.preventDefault();
-                saveDraft();
-            }
-        });
+        // Listen to save draft events from editor
+        $scope.$on('save-draft', saveDraft);
 
         /**
          * Discard the current draft and grab the current page
@@ -385,7 +379,7 @@ module.exports = function (ngApp, events) {
          */
         $scope.discardDraft = function () {
             let url = window.baseUrl('/ajax/page/' + pageId);
-            $http.get(url).then((responseData) => {
+            $http.get(url).then(responseData => {
                 if (autoSave) $interval.cancel(autoSave);
                 $scope.draftText = trans('entities.pages_editing_page');
                 $scope.isUpdateDraft = false;

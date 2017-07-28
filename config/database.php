@@ -23,6 +23,14 @@ if (env('REDIS_SERVERS', false)) {
     }
 }
 
+$mysql_host = env('DB_HOST', 'localhost');
+$mysql_host_exploded = explode(':', $mysql_host);
+$mysql_port = env('DB_PORT', 3306);
+if (count($mysql_host_exploded) > 1) {
+    $mysql_host = $mysql_host_exploded[0];
+    $mysql_port = intval($mysql_host_exploded[1]);
+}
+
 return [
 
     /*
@@ -81,8 +89,8 @@ return [
             'database'  => $database,
             'username'  => $username,
             'password'  => $password,
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
+            'charset'   => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
             'prefix'    => '',
             'strict'    => false,
         ],
