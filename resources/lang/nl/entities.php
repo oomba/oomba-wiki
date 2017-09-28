@@ -214,4 +214,23 @@ return [
     'profile_not_created_pages' => ':userName heeft geen pagina\'s gemaakt',
     'profile_not_created_chapters' => ':userName heeft geen hoofdstukken gemaakt',
     'profile_not_created_books' => ':userName heeft geen boeken gemaakt',
+
+    /**
+     * Comments
+     */
+    'comment' => 'Reactie',
+    'comments' => 'Reacties',
+    'comment_placeholder' => 'Laat hier een reactie achter',
+    'comment_count' => '{0} Geen reacties|{1} 1 Reactie|[2,*] :count Reacties',
+    'comment_save' => 'Sla reactie op',
+    'comment_saving' => 'Opslaan van reactie...',
+    'comment_deleting' => 'Verwijderen van reactie...',
+    'comment_new' => 'Nieuwe reactie',
+    'comment_created' => 'reactie gegeven :createDiff',
+    'comment_updated' => 'Update :updateDiff door :username',
+    'comment_deleted_success' => 'Reactie verwijderd',
+    'comment_created_success' => 'Reactie toegevoegd',
+    'comment_updated_success' => 'Reactie bijgewerkt',
+    'comment_delete_confirm' => 'Zeker reactie verwijderen?',
+    'comment_in_reply_to' => 'Antwoord op :commentId',
 ];
